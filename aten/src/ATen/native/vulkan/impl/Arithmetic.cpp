@@ -16,6 +16,8 @@ api::ShaderInfo get_shader(const OpType type) {
       return VK_KERNEL(mul);
     case OpType::DIV:
       return VK_KERNEL(div);
+    default:
+      return VK_KERNEL(add);
   }
 }
 
