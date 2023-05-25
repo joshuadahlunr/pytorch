@@ -331,7 +331,7 @@ constexpr uint32_t CUDA_THREADS_PER_BLOCK_FALLBACK = 256;
 // Those platforms do not support assert()
 #define CUDA_KERNEL_ASSERT(cond)
 #define SYCL_KERNEL_ASSERT(cond)
-#elif defined(_MSC_VER)
+#elif defined(_MSC_VER) || defined(_WIN32)
 #if defined(NDEBUG)
 extern "C" {
 C10_IMPORT
@@ -341,6 +341,7 @@ extern SYCL_EXTERNAL void _wassert(
     const wchar_t* wfile,
     unsigned line);
 #else
+  __declspec(dllexport) __declspec(dllimport) 
 #if defined(__CUDA_ARCH__)
 __host__ __device__
 #endif // __CUDA_ARCH__

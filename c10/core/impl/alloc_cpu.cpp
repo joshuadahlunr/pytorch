@@ -63,7 +63,7 @@ void* alloc_cpu(size_t nbytes) {
       "DefaultCPUAllocator: not enough memory: you tried to allocate ",
       nbytes,
       " bytes.");
-#elif defined(_MSC_VER)
+#elif defined(_MSC_VER) || defined(_WIN32)
   data = _aligned_malloc(nbytes, gAlignment);
   CAFFE_ENFORCE(
       data,
